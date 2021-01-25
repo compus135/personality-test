@@ -19,6 +19,18 @@ Page({
           ...payment,
           success(res) {
             console.log("pay success", res);
+            wx.request({
+              url:
+                "http://characters.market.alicloudapi.com/ln/report/mastercode/emotion_description/1.0",
+              mathod: "POST",
+              data: { birthday: "19861006" },
+              success(res) {
+                console.log("characters", res);
+              },
+              fail(res) {
+                console.log("characters", res);
+              },
+            });
           },
           fail(res) {
             console.error("pay fail", err);
