@@ -1,0 +1,79 @@
+/* pages/home/home.wxss */
+.home {
+  position: relative;
+}
+.home-bg {
+  width: 100%;
+  margin-top: -1px;
+}
+.home-body {
+  padding: 0 20px;
+}
+.home-birthday-wrapper {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  margin: 20px 0 0;
+  line-height: 46px;
+  padding: 0 10px;
+}
+.home-birthday {
+  flex: 1;
+  color: #ccc;
+}
+
+.home-birthday__active {
+  color: #000;
+}
+
+.home-submit-btn {
+  width: auto;
+  margin: 40px 0px;
+}
+
+button[type="primary"] {
+  color: #fff;
+  background-color: #2564c5;
+}
+
+.introduce {
+  position: absolute;
+  top: calc(100vh - 40px);
+  left: 20px;
+  right: 20px;
+}
+
+.introduce-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  height: 40px;
+}
+
+.introduce-header-line {
+  border-top: 1px solid #cccc;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.introduce-header-title {
+  background-color: white;
+  padding: 0 5px;
+}
+
+.introduce-body {
+  color: #666;
+  margin-top: 20px;
+}
+
+.introduce-body view {
+  margin-bottom: 20px;
+}

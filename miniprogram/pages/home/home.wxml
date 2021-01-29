@@ -1,0 +1,29 @@
+<view class="home">
+    <image mode='widthFix' class="home-bg" src="./home-bg.png" alt=""></image>
+    <view class="home-body">
+        <picker mode="date" start='1900-01-01' end='2022-01-01' value='{{birthday}}' bindchange="onBirthdayChange">
+            <view class="home-birthday-wrapper global-with-arrow">
+                <view wx:if="{{!birthday}}" class="home-birthday">请选择阳历生日</view>
+                <view wx:else="{{birthday}}" class="home-birthday home-birthday__active">
+                    {{birthday}}
+                </view>
+            </view>
+        </picker>
+        <button class="home-submit-btn" type='{{birthday?"primary":"default"}}' disabled="{{birthday?false:true}}" size="default" bindtap="onSubmit">
+            开始分析
+        </button>
+    </view>
+    <view class="introduce">
+        <view class="introduce-header">
+            <view class="introduce-header-line"></view>
+            <view class="introduce-header-title">产品介绍</view>
+        </view>
+        <view class="introduce-body">
+            <view>
+                TWG平台充分运用人工智能、深度语义认知、知识图谱等尖端认知科学技术优势以及大数据、云计算等先进信息处理技术，发现客户潜在需求，提升管理效率，优化人员结构，促进社会和谐、家庭幸福、个人发展以及为企业赋能，助力企业内部管理优化、实现公司价值快速提升，及实现社会价值。
+            </view>
+            <view>使用时仅需输入阳历出生年月日，即可以快速解析用户的性格特点、行为模式、内心世界、情绪状态、潜在天赋、财富运势等信息。</view>
+            <view>了解自己或身边人的性格特质及行为模式，沟通交际无障碍，读懂他人心理需求 So easy。</view>
+        </view>
+    </view>
+</view>
