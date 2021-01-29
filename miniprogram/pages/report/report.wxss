@@ -1,0 +1,48 @@
+.report {
+  position: relative;
+}
+.report-bg {
+  width: 100%;
+  margin-top: -1px;
+}
+.order-info {
+  position: absolute;
+  left: 20px;
+  right: 0;
+  top: 40px;
+  color: white;
+}
+
+.report-content {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  min-height: calc(100vh - 120px);
+  border-radius: 10px;
+  background: #fff;
+  padding: 20px 0 20px 20px;
+}
+
+.report-content-birthday {
+  font-size: 40px;
+  color: #2564c5;
+  text-align: center;
+}
+
+.report-content-tip {
+  font-size: 14px;
+  color: #ccc;
+  text-align: center;
+}
+
+.report-item-title {
+  border-left: 4px solid #2564c5;
+  padding-left: 10px;
+  color: #333;
+  margin: 20px 0 5px;
+}
+.report-item-content {
+  color: #666;
+  padding-left: 14px;
+}

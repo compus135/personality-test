@@ -9,16 +9,18 @@ Page({
     this.setData({ birthday: e.detail.value });
   },
   onSubmit() {
+    const birthday = this.data.birthday;
     wx.cloud.callFunction({
       name: "order",
-      data: { birthday: this.data.birthday },
+      data: { birthday: birthday },
       success(res) {
+        console.log(res);
         const payment = res.result.payment;
         wx.requestPayment({
           ...payment,
           success(res) {
             wx.navigateTo({
-              url: "../report/report",
+              url: "../report/report?birthday=" + birthday,
             });
           },
           fail(res) {
@@ -32,7 +34,7 @@ Page({
       },
       fail(res) {
         wx.showToast({
-          title: "分析失败，请稍后再试",
+          title: "分析失败",
           icon: "error",
           duration: 2000,
         });

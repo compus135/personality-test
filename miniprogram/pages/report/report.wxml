@@ -1,1 +1,14 @@
-<view>report</view>
+<view class="report">
+    <image mode='widthFix' class="report-bg" src="../../image/bg.png"></image>
+    <view class="order-info">
+        <view class="order-time">订单日期：{{orderTime}}</view>
+    </view>
+    <view class="report-content">
+        <view class="report-content-birthday">{{birthday}}</view>
+        <view class="report-content-tip">性格特点分析</view>
+        <view class="report-content-detail">
+            <view class="report-item-title">性格描述</view>
+            <view class="report-item-conte">{{report}}</view>
+        </view>
+    </view>
+</view>

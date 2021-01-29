@@ -1,5 +1,5 @@
 <view class="my">
-    <image mode='widthFix' class="my-bg" src="./my-bg.png"></image>
+    <image mode='widthFix' class="my-bg" src="../../image/bg.png"></image>
     <view class="user-wrapper">
         <view class="avatar">
             <open-data type="userAvatarUrl" default-avatar='../../image/avater.png'></open-data>

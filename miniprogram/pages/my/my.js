@@ -2,18 +2,22 @@ const app = getApp();
 
 Page({
   data: {
-    orders: [
-      {
-        orderId: "19111",
-        birthday: "19901022",
-      },
-      {
-        orderId: "19112",
-        birthday: "19901022",
-      },
-    ],
+    orders: [],
   },
   onViewReport(e) {
-    console.log(e.currentTarget.dataset.orderId);
+    wx.navigateTo({
+      url: "../report/report?birthday=" + e.currentTarget.dataset.birthday,
+    });
+  },
+  onLoad(options) {
+    const { birthday } = options.query;
+    this.setDate({ birthday });
+    wx.cloud.callFunction({
+      name: "getOrders",
+      data: { birthday: birthday },
+      success(res) {
+        this.setDate({ orders: res });
+      },
+    });
   },
 });
