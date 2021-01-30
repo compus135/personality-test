@@ -14,11 +14,10 @@ exports.main = async (event, context) => {
     .collection("orders")
     .where({
       openId: wxContext.OPENID,
-      birthday: event.birthday,
     })
     .get()
     .then((res) => res);
-
+  console.log("queryResult", queryResult);
   if (queryResult.data) {
     return queryResult.data;
   } else {

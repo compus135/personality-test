@@ -7,16 +7,19 @@ Page({
     orderTime: "",
   },
   onLoad(options) {
-    const { birthday } = options.query;
-    this.setDate({ birthday });
+    console.log(options);
+    const { birthday } = options;
+    this.setData({ birthday });
     wx.cloud.callFunction({
       name: "getReport",
       data: { birthday: birthday },
-      success(res) {
-        this.setDate({ report: res.report, orderTime: res.orderTime });
+      success: (res) => {
+        console.log("getReport success", res);
+        this.setData({ report: res.report, orderTime: res.orderTime });
       },
       fail(res) {
-        wx.navigateTo({ url: "../report/report" });
+        console.log("getReport fail", res);
+        wx.navigateBack({});
       },
     });
   },

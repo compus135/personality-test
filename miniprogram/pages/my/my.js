@@ -10,13 +10,14 @@ Page({
     });
   },
   onLoad(options) {
-    const { birthday } = options.query;
-    this.setDate({ birthday });
     wx.cloud.callFunction({
       name: "getOrders",
-      data: { birthday: birthday },
-      success(res) {
-        this.setDate({ orders: res });
+      success: (res) => {
+        console.log("my success", res);
+        this.setData({ orders: res });
+      },
+      fail(res) {
+        console.log("my fail", res);
       },
     });
   },

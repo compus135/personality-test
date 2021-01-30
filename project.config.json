@@ -27,12 +27,12 @@
     "minifyWXSS": true,
     "bundle": false
   },
-  "appid": "wxfd2b9d49590a7dda",
   "projectname": "miniprogram-1",
   "libVersion": "2.8.1",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "appid": "wxfd2b9d49590a7dda",
   "condition": {
     "search": {
       "list": []

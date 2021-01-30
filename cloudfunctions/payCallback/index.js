@@ -8,7 +8,7 @@ cloud.init({
 // 云函数入口函数
 exports.main = async (event, context) => {
   console.log("payCallback", event);
-  const { resultCode, attach, userInfo } = event;
+  const { resultCode, attach, userInfo, outTradeNo } = event;
   if (resultCode === "SUCCESS") {
     const db = cloud.database();
     const orders = db.collection("orders");
@@ -17,6 +17,7 @@ exports.main = async (event, context) => {
         birthday: attach,
         orderTime: new Date().getTime(),
         openId: userInfo.openId,
+        outTradeNo,
       },
     });
   }

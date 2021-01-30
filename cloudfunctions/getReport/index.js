@@ -18,6 +18,8 @@ exports.main = async (event, context) => {
     })
     .get()
     .then((res) => res);
+  console.log("wxContext.OPENID", wxContext.OPENID);
+  console.log("event.birthday", event.birthday);
   console.log("queryResult", queryResult);
   if (queryResult.data && queryResult.data.length > 0) {
     const { birthday, orderTime } = queryResult.data[0];
@@ -28,12 +30,20 @@ exports.main = async (event, context) => {
       headers: {
         Authorization: "APPCODE ea40b24093c246678f898e36496a94ea",
       },
-      form: { birthday: birthday.replace("-", "") },
+      form: { birthday: birthday.replace(/-/g, "") },
     };
+    console.log("options", options);
+
     const report = await new Promise((resolve, reject) => {
       request(options, function (error, response, body) {
+        console.log("error", error);
+        console.log("body", body);
+        console.log("response.statusCode", response.statusCode);
+
         if (!error && response.statusCode == 200) {
           resolve(body);
+        } else {
+          reject("获取报告失败");
         }
       });
     });
