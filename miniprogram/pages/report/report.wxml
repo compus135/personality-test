@@ -1,7 +1,8 @@
 <view class="report">
     <image mode='widthFix' class="report-bg" src="../../image/bg.png"></image>
     <view class="order-info">
-        <view class="order-time">订单日期：{{orderTime}}</view>
+        <view class="order-time">报告编号：{{orderId}}</view>
+        <view class="order-time">生成日期：{{orderTime}}</view>
     </view>
     <view class="report-content">
         <view class="report-content-birthday">{{birthday}}</view>

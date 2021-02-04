@@ -22,7 +22,7 @@ exports.main = async (event, context) => {
   console.log("event.birthday", event.birthday);
   console.log("queryResult", queryResult);
   if (queryResult.data && queryResult.data.length > 0) {
-    const { birthday, orderTime } = queryResult.data[0];
+    const { birthday, orderTime, orderId } = queryResult.data[0];
     const options = {
       url:
         "http://characters.market.alicloudapi.com/ln/report/mastercode/emotion_description/1.0",
@@ -46,8 +46,11 @@ exports.main = async (event, context) => {
           reject("获取报告失败");
         }
       });
+      // resolve(
+      //   "fake: 追求和谐，擅长沟通、表达及写作，有耐心，做助理的最佳人选，适合工作放在咨询、客服或销售岗位；2号人的【行为模式】是喜欢陪伴，依赖性强，做决定时犹豫不决，动作偏缓慢...."
+      // );
     });
-    return { report, orderTime };
+    return { report, orderTime, orderId };
   } else {
     throw new Error("没发现订单");
   }

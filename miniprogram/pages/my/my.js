@@ -14,7 +14,7 @@ Page({
       name: "getOrders",
       success: (res) => {
         console.log("my success", res);
-        this.setData({ orders: res });
+        this.setData({ orders: res.result });
       },
       fail(res) {
         console.log("my fail", res);

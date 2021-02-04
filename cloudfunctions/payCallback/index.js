@@ -17,7 +17,7 @@ exports.main = async (event, context) => {
         birthday: attach,
         orderTime: new Date().getTime(),
         openId: userInfo.openId,
-        outTradeNo,
+        orderId: outTradeNo,
       },
     });
   }
