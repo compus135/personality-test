@@ -1,31 +1,37 @@
 .report {
   position: relative;
 }
+.report-fail {
+  margin-top: 60px;
+  text-align: center;
+  color: #666;
+}
 .report-bg {
+  position: absolute;
   width: 100%;
-  margin-top: -1px;
+  top: -1px;
+  z-index: -1;
 }
 .order-info {
-  position: absolute;
-  left: 20px;
-  right: 0;
-  top: 40px;
+  padding-top: 20px;
+  padding-left: 20px;
   color: white;
 }
 
+.order-time {
+  margin-top: 10px;
+}
+
 .report-content {
-  position: absolute;
-  top: 120px;
-  left: 0;
-  right: 0;
-  min-height: calc(100vh - 120px);
+  margin-top: 20px;
+  min-height: calc(100vh - 60px);
   border-radius: 10px;
   background: #fff;
-  padding: 20px 0 20px 20px;
+  padding: 20px;
 }
 
 .report-content-birthday {
-  font-size: 40px;
+  font-size: 24px;
   color: #2564c5;
   text-align: center;
 }
@@ -34,10 +40,12 @@
   font-size: 14px;
   color: #ccc;
   text-align: center;
+  margin-top: 8px;
 }
 
 .report-item-title {
   border-left: 4px solid #2564c5;
+  line-height: 1;
   padding-left: 10px;
   color: #333;
   margin: 20px 0 5px;

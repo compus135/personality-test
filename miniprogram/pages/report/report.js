@@ -1,40 +1,65 @@
 const app = getApp();
+const titles = {
+  1: "性格情感",
+  2: "性格描述",
+  3: "个性特征",
+  4: "性格详解",
+  5: "性格三字经",
+  6: "优点",
+  7: "缺点",
+};
+
+function formatNumber(num) {
+  if (num < 10) {
+    return "0" + num;
+  }
+  return num;
+}
+
 function formatDate(now) {
-  var year = now.getFullYear(); //取得4位数的年份
-  var month = now.getMonth() + 1; //取得日期中的月份，其中0表示1月，11表示12月
-  var date = now.getDate(); //返回日期月份中的天数（1到31）
-  var hour = now.getHours(); //返回日期中的小时数（0到23）
-  var minute = now.getMinutes(); //返回日期中的分钟数（0到59）
-  var second = now.getSeconds(); //返回日期中的秒数（0到59）
+  var year = now.getFullYear();
+  var month = formatNumber(now.getMonth() + 1);
+  var date = formatNumber(now.getDate());
+  var hour = formatNumber(now.getHours());
+  var minute = formatNumber(now.getMinutes());
+  var second = formatNumber(now.getSeconds());
   return (
     year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second
   );
 }
+
+function formatCharacters(characters) {
+  return characters.map((item) => {
+    return { title: titles[item.id], description: item.description };
+  });
+}
 Page({
   data: {
-    report: "",
+    characters: [],
     birthday: "",
     orderTime: "",
     orderId: "",
+    fetchingReport: true,
   },
   onLoad(options) {
-    console.log(options);
-    const { birthday } = options;
-    this.setData({ birthday });
+    const { outTradeNo } = options;
+    wx.showLoading({ title: "加载中..." });
     wx.cloud.callFunction({
       name: "getReport",
-      data: { birthday: birthday },
+      data: { outTradeNo },
       success: (res) => {
-        console.log("getReport success", res);
         this.setData({
-          report: res.result.report,
+          characters: formatCharacters(res.result.characters),
           orderTime: formatDate(new Date(res.result.orderTime)),
-          orderId: res.result.orderId,
+          orderId: outTradeNo.substr(15),
+          birthday: res.result.birthday,
         });
+        wx.hideLoading();
+        this.setData({ fetchingReport: false });
       },
-      fail(res) {
-        console.log("getReport fail", res);
-        wx.navigateBack({});
+      fail: (res) => {
+        wx.hideLoading();
+        this.setData({ fetchingReport: false });
       },
     });
   },

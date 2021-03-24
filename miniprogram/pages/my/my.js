@@ -6,19 +6,16 @@ Page({
   },
   onViewReport(e) {
     wx.navigateTo({
-      url: "../report/report?birthday=" + e.currentTarget.dataset.birthday,
+      url: "../report/report?outTradeNo=" + e.currentTarget.dataset.outtradeno,
     });
   },
   onLoad(options) {
     wx.cloud.callFunction({
       name: "getOrders",
       success: (res) => {
-        console.log("my success", res);
         this.setData({ orders: res.result });
       },
-      fail(res) {
-        console.log("my fail", res);
-      },
+      fail(res) {},
     });
   },
 });

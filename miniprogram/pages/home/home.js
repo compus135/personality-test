@@ -14,18 +14,18 @@ Page({
       name: "order",
       data: { birthday: birthday },
       success(res) {
-        console.log(res);
-        const payment = res.result.payment;
+        const payment = res.result.order.payment;
+        const outTradeNo = res.result.outTradeNo;
         wx.requestPayment({
           ...payment,
           success(res) {
             wx.navigateTo({
-              url: "../report/report?birthday=" + birthday,
+              url: "../report/report?outTradeNo=" + outTradeNo,
             });
           },
           fail(res) {
             wx.showToast({
-              title: "支付失败，请稍后再试",
+              title: "支付失败",
               icon: "error",
               duration: 2000,
             });
@@ -42,24 +42,3 @@ Page({
     });
   },
 });
-
-//  //生成订单
-//  const db = wx.cloud.database();
-//  const orders = db.collection("orders");
-//  orders.add({
-//    data: {},
-//  });
-//  wx.request({
-//    url:
-//      "http://characters.market.alicloudapi.com/ln/report/mastercode/emotion_description/1.0",
-//    method: "POST",
-//    data: { birthday: this.data.birthday },
-//    success(res) {},
-//    fail(res) {
-//      wx.showToast({
-//        title: "分析失败，请稍后再试",
-//        icon: "error",
-//        duration: 2000,
-//      });
-//    },
-//  });

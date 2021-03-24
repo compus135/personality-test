@@ -1,15 +1,21 @@
 <view class="report">
-    <image mode='widthFix' class="report-bg" src="../../image/bg.png"></image>
-    <view class="order-info">
-        <view class="order-time">报告编号：{{orderId}}</view>
-        <view class="order-time">生成日期：{{orderTime}}</view>
-    </view>
-    <view class="report-content">
-        <view class="report-content-birthday">{{birthday}}</view>
-        <view class="report-content-tip">性格特点分析</view>
-        <view class="report-content-detail">
-            <view class="report-item-title">性格描述</view>
-            <view class="report-item-conte">{{report}}</view>
+    <view wx:if="{{fetchingReport}}"></view>
+    <view wx:elif="{{characters.length === 0}}" class="report-fail">请查看订单</view>
+    <view wx:else>
+        <image mode='widthFix' class="report-bg" src="../../image/bg.png"></image>
+        <view class="order-info">
+            <view class="order-id">报告编号：{{orderId}}</view>
+            <view class="order-time">生成日期：{{orderTime}}</view>
+        </view>
+        <view class="report-content">
+            <view class="report-content-birthday">{{birthday}}</view>
+            <view class="report-content-tip">性格特点分析</view>
+            <view class="report-content-detail">
+                <view wx:for="{{characters}}" wx:key="index">
+                    <view class="report-item-title">{{item.title}}</view>
+                    <view class="report-item-content">{{item.description}}</view>
+                </view>
+            </view>
         </view>
     </view>
 </view>

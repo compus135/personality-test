@@ -1,3 +1,4 @@
+<wxs src="../../utils/tools.wxs" module="tools"></wxs>
 <view class="my">
     <image mode='widthFix' class="my-bg" src="../../image/bg.png"></image>
     <view class="user-wrapper">
@@ -10,8 +11,8 @@
     </view>
     <view class="order-list">
         <view class="global-title">订单列表：</view>
-        <view wx:for="{{orders}}" wx:key="orderId" class="order-item" bindtap="onViewReport" data-orderId="{{item.orderId}}" data-birthday="{{item.birthday}}">
-            <view>订单：{{item.orderId}}</view>
+        <view wx:for="{{orders}}" wx:key="orderId" class="order-item" bindtap="onViewReport" data-outtradeno="{{item.outTradeNo}}" data-birthday="{{item.birthday}}">
+            <view>订单：{{tools.getSubstring(item.outTradeNo,15)}}</view>
             <view>生日：{{item.birthday}}</view>
             <view class="order-view-report global-with-arrow">查看报告</view>
         </view>

@@ -1,6 +1,5 @@
 // 云函数入口文件
 const cloud = require("wx-server-sdk");
-const request = require("request");
 
 cloud.init({
   env: "personality-4gz3z2mg80c816ff",
@@ -14,10 +13,10 @@ exports.main = async (event, context) => {
     .collection("orders")
     .where({
       openId: wxContext.OPENID,
+      hasPaid: true,
     })
     .get()
     .then((res) => res);
-  console.log("queryResult", queryResult);
   if (queryResult.data) {
     return queryResult.data;
   } else {

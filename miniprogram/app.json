@@ -1,8 +1,9 @@
 {
-  "pages": [   
+  "pages": [ 
     "pages/home/home",
     "pages/my/my",
     "pages/report/report"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

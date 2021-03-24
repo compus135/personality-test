@@ -1,0 +1,7 @@
+function getSubstring(str, index) {
+  return str.substring(index);
+}
+
+module.exports = {
+  getSubstring: getSubstring,
+};

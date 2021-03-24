@@ -7,23 +7,23 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  console.log("payCallback", event);
-  const { resultCode, attach, userInfo, outTradeNo } = event;
+  const { resultCode, outTradeNo } = event;
   if (resultCode === "SUCCESS") {
+    console.log("paycallback SUCCESS");
     const db = cloud.database();
     const orders = db.collection("orders");
-    orders.add({
-      data: {
-        birthday: attach,
-        orderTime: new Date().getTime(),
-        openId: userInfo.openId,
-        orderId: outTradeNo,
-      },
-    });
+    await orders
+      .where({
+        outTradeNo: outTradeNo,
+      })
+      .update({
+        data: {
+          hasPaid: true,
+        },
+      });
+    return {
+      errcode: 0,
+      errmsg: "",
+    };
   }
-
-  return {
-    errcode: 0,
-    errmsg: "",
-  };
 };
