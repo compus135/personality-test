@@ -4,6 +4,7 @@ Page({
   data: {
     orders: [],
     fetchingOrders: true,
+    isIos: false,
   },
   onViewReport(e) {
     wx.navigateTo({
@@ -11,6 +12,11 @@ Page({
     });
   },
   onLoad(options) {
+    try {
+      const res = wx.getSystemInfoSync();
+      res.platform.includes("ios") && this.setData({ isIos: true });
+    } catch (error) {}
+
     wx.cloud.callFunction({
       name: "getOrders",
       success: (res) => {

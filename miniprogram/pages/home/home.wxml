@@ -9,9 +9,12 @@
                 </view>
             </view>
         </picker>
-        <button class="home-submit-btn" type='{{birthday?"primary":"default"}}' disabled="{{birthday?false:true}}" size="default" bindtap="onSubmit">
+        <button class="home-submit-btn" type='{{!isIos && birthday?"primary":"default"}}' disabled="{{!isIos && birthday?false:true}}" size="default" bindtap="onSubmit">
             开始分析
         </button>
+        <view wx:if="{{isIos}}">
+            <view class="home-ios-tip">由于相关规范，iOS功能暂不可用</view>
+        </view>
     </view>
     <view class="introduce">
         <view class="introduce-header">
@@ -24,7 +27,7 @@
             </view>
             <view>使用时仅需输入阳历出生年月日，即可以快速解析用户的性格特点、行为模式、内心世界、情绪状态、潜在天赋、财富运势等信息。</view>
             <view>了解自己或身边人的性格特质及行为模式，沟通交际无障碍，读懂他人心理需求 So easy。</view>
-            <view>免责声明：该数据由北京玄一科技有限公司提供，本产品支付后即产生数据查询成本，因此订单支付后不予退款。</view>
+            <view wx:if="{{!isIos}}">免责声明：该数据由北京玄一科技有限公司提供，本产品支付后即产生数据查询成本，因此订单支付后不予退款。</view>
         </view>
     </view>
 </view>

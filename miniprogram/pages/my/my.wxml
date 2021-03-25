@@ -10,7 +10,16 @@
         </view>
     </view>
     <view class="order-list">
-        <view wx:if="{{fetchingOrders === false && orders.length}}">
+        <view wx:if="{{isIos}}">
+            <view class="order-list-introduce-body">
+                <view>
+                    TWG平台充分运用人工智能、深度语义认知、知识图谱等尖端认知科学技术优势以及大数据、云计算等先进信息处理技术，发现客户潜在需求，提升管理效率，优化人员结构，促进社会和谐、家庭幸福、个人发展以及为企业赋能，助力企业内部管理优化、实现公司价值快速提升，及实现社会价值。
+                </view>
+                <view>使用时仅需输入阳历出生年月日，即可以快速解析用户的性格特点、行为模式、内心世界、情绪状态、潜在天赋、财富运势等信息。</view>
+                <view>了解自己或身边人的性格特质及行为模式，沟通交际无障碍，读懂他人心理需求 So easy。</view>
+            </view>
+        </view>
+        <view wx:elif="{{fetchingOrders === false && orders.length}}">
             <view class="global-title">订单列表：</view>
             <view wx:for="{{orders}}" wx:key="orderId" class="order-item" bindtap="onViewReport" data-outtradeno="{{item.outTradeNo}}" data-birthday="{{item.birthday}}">
                 <view>订单：{{tools.getSubstring(item.outTradeNo,15)}}</view>

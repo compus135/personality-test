@@ -57,3 +57,13 @@
   text-align: center;
   margin-top: 100px;
 }
+
+.order-list-introduce-body {
+  color: #666;
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+.order-list-introduce-body view {
+  margin-bottom: 20px;
+}

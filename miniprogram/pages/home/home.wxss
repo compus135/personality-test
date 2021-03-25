@@ -81,3 +81,9 @@ button[type="primary"] {
 .introduce-body view {
   margin-bottom: 20px;
 }
+
+.home-ios-tip {
+  text-align: center;
+  margin-top: -16px;
+  color: #999;
+}

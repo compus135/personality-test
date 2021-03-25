@@ -4,9 +4,14 @@ const app = getApp();
 Page({
   data: {
     birthday: "",
+    isIos: false,
   },
   onBirthdayChange(e) {
     this.setData({ birthday: e.detail.value });
+  },
+  onLoad() {
+    const res = wx.getSystemInfoSync();
+    res.platform.includes("ios") && this.setData({ isIos: true });
   },
   onSubmit() {
     const birthday = this.data.birthday;
