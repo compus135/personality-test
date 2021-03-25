@@ -3,12 +3,12 @@ const cloud = require("wx-server-sdk");
 const request = require("request");
 
 const urls = [
-  // { url: "emotion_description/1.0", id: 1 },
-  // { url: "characteristics_description/1.0", id: 3 },
-  // { url: "detailed_description/1.0", id: 4 },
+  { url: "emotion_description/1.0", id: 1 },
+  { url: "characteristics_description/1.0", id: 3 },
+  { url: "detailed_description/1.0", id: 4 },
   { url: "threecharacter_description/1.0", id: 5 },
-  // { url: "advantages", id: 6 },
-  // { url: "disadvantages", id: 7 },
+  { url: "advantages", id: 6 },
+  { url: "disadvantages", id: 7 },
 ];
 
 function getOptions(url, birthday) {
