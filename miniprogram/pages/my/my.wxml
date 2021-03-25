@@ -10,11 +10,16 @@
         </view>
     </view>
     <view class="order-list">
-        <view class="global-title">订单列表：</view>
-        <view wx:for="{{orders}}" wx:key="orderId" class="order-item" bindtap="onViewReport" data-outtradeno="{{item.outTradeNo}}" data-birthday="{{item.birthday}}">
-            <view>订单：{{tools.getSubstring(item.outTradeNo,15)}}</view>
-            <view>生日：{{item.birthday}}</view>
-            <view class="order-view-report global-with-arrow">查看报告</view>
+        <view wx:if="{{fetchingOrders === false && orders.length}}">
+            <view class="global-title">订单列表：</view>
+            <view wx:for="{{orders}}" wx:key="orderId" class="order-item" bindtap="onViewReport" data-outtradeno="{{item.outTradeNo}}" data-birthday="{{item.birthday}}">
+                <view>订单：{{tools.getSubstring(item.outTradeNo,15)}}</view>
+                <view>生日：{{item.birthday}}</view>
+                <view class="order-view-report global-with-arrow">查看报告</view>
+            </view>
+        </view>
+        <view wx:elif="{{fetchingOrders === false && orders.length === 0}}">
+            <view class="my-order-empty">您还没有订单，赶紧试一下吧</view>
         </view>
     </view>
 </view>

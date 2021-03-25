@@ -52,3 +52,8 @@
   display: flex;
   align-items: center;
 }
+
+.my-order-empty {
+  text-align: center;
+  margin-top: 100px;
+}

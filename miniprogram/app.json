@@ -8,7 +8,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#3d95f4",
-    "navigationBarTitleText": "智慧识人",
+    "navigationBarTitleText": "性格测评",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

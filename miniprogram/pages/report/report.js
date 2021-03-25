@@ -35,6 +35,7 @@ function formatCharacters(characters) {
 }
 Page({
   data: {
+    reportFailTip: "",
     characters: [],
     birthday: "",
     orderTime: "",
@@ -48,12 +49,23 @@ Page({
       name: "getReport",
       data: { outTradeNo },
       success: (res) => {
-        this.setData({
-          characters: formatCharacters(res.result.characters),
-          orderTime: formatDate(new Date(res.result.orderTime)),
-          orderId: outTradeNo.substr(15),
-          birthday: res.result.birthday,
-        });
+        if (res.result.status === 0) {
+          this.setData({
+            characters: formatCharacters(res.result.characters),
+            orderTime: formatDate(new Date(res.result.orderTime)),
+            orderId: outTradeNo.substr(15),
+            birthday: res.result.birthday,
+          });
+        } else if (res.result.status === 10000) {
+          this.setData({
+            reportFailTip: "支付失败，请再试一次",
+          });
+        } else if (res.result.status === 20000) {
+          this.setData({
+            reportFailTip: "订单处理中，请稍后查询",
+          });
+        }
+
         wx.hideLoading();
         this.setData({ fetchingReport: false });
       },

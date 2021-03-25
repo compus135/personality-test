@@ -3,11 +3,10 @@ const cloud = require("wx-server-sdk");
 const request = require("request");
 
 const urls = [
-  { url: "emotion_description/1.0", id: 1 },
-  { url: "character_description/1.0", id: 2 },
+  // { url: "emotion_description/1.0", id: 1 },
   // { url: "characteristics_description/1.0", id: 3 },
   // { url: "detailed_description/1.0", id: 4 },
-  // { url: "threecharacter_description/1.0", id: 5 },
+  { url: "threecharacter_description/1.0", id: 5 },
   // { url: "advantages", id: 6 },
   // { url: "disadvantages", id: 7 },
 ];
@@ -37,7 +36,7 @@ function getOptions(url, birthday) {
 }
 
 cloud.init({
-  env: "personality-4gz3z2mg80c816ff",
+  env: "characters-1g5805hffbe21a42",
 });
 
 // 云函数入口函数
@@ -53,7 +52,7 @@ exports.main = async (event, context) => {
     })
     .get()
     .then((res) => res.data);
-  if (records.length) {
+  if (records.length && records[0].hasPaid === true) {
     const birthday = records[0].birthday;
     const orderTime = records[0].orderTime;
     const queryResult = await db
@@ -65,18 +64,15 @@ exports.main = async (event, context) => {
       .then((res) => res);
     if (queryResult.data && queryResult.data.length > 0) {
       const { characters } = queryResult.data[0];
-      return { characters, birthday, orderTime };
+      return { status: 0, characters, birthday, orderTime };
     } else {
+      console.log("characters request start...");
       const requests = urls.map((item) => {
         return new Promise((resolve, reject) => {
           const formatBirthday = birthday.replace(/-/g, "");
           request(
             getOptions(item.url, formatBirthday),
             function (error, response, body) {
-              console.log("error", error);
-              console.log("body", body);
-              console.log("response.statusCode", response.statusCode);
-
               if (!error && response.statusCode == 200) {
                 resolve({
                   id: item.id,
@@ -96,19 +92,20 @@ exports.main = async (event, context) => {
           characters.push(result);
         } catch (error) {}
       }
-
-      // const characters = await Promise.all(requests).then((res) => res);
+      console.log("characters request end length " + characters.length);
       if (characters.length) {
         await db
           .collection("reports")
           .add({ data: { birthday: birthday, characters: characters } });
-        return { characters, birthday, orderTime };
+        return { status: 0, characters, birthday, orderTime };
       } else {
         console.log("characters.length is 0");
-        throw Error("未查到报告");
+        return { status: 20000 };
       }
     }
+  } else if (records.length && records[0].hasPaid === "fail") {
+    return { status: 10000 };
   } else {
-    throw Error("未查到报告");
+    return { status: 20000 };
   }
 };

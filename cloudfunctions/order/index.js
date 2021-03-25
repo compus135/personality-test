@@ -2,7 +2,7 @@
 const cloud = require("wx-server-sdk");
 
 cloud.init({
-  env: "personality-4gz3z2mg80c816ff",
+  env: "characters-1g5805hffbe21a42",
 });
 
 const getRandom32 = () => {
@@ -32,13 +32,13 @@ exports.main = async (event, context) => {
 
   const res = await cloud.cloudPay.unifiedOrder({
     functionName: "payCallback",
-    envId: "personality-4gz3z2mg80c816ff",
-    subMchId: "1587853521",
+    envId: "characters-1g5805hffbe21a42",
+    subMchId: "1606001702",
     nonceStr: outTradeNo,
-    body: "进击de奶爸-服务",
+    body: "幻兔科技-服务",
     outTradeNo: outTradeNo,
     attach: birthday,
-    totalFee: 1,
+    totalFee: 388,
     spbillCreateIp: "127.0.0.1",
     tradeType: "JSAPI",
   });

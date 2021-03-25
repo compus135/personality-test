@@ -3,6 +3,7 @@ const app = getApp();
 Page({
   data: {
     orders: [],
+    fetchingOrders: true,
   },
   onViewReport(e) {
     wx.navigateTo({
@@ -13,9 +14,11 @@ Page({
     wx.cloud.callFunction({
       name: "getOrders",
       success: (res) => {
-        this.setData({ orders: res.result });
+        this.setData({ orders: res.result, fetchingOrders: false });
       },
-      fail(res) {},
+      fail(res) {
+        this.setData({ fetchingOrders: false });
+      },
     });
   },
 });

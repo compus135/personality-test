@@ -1,6 +1,6 @@
 <view class="report">
     <view wx:if="{{fetchingReport}}"></view>
-    <view wx:elif="{{characters.length === 0}}" class="report-fail">请查看订单</view>
+    <view wx:elif="{{characters.length === 0}}" class="report-fail">{{reportFailTip}}</view>
     <view wx:else>
         <image mode='widthFix' class="report-bg" src="../../image/bg.png"></image>
         <view class="order-info">
