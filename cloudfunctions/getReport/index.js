@@ -67,7 +67,7 @@ exports.main = async (event, context) => {
       return { status: 0, characters, birthday, orderTime };
     } else {
       console.log("characters request start...");
-      const requests = urls.map((item) => {
+      const requests = urls.map((item, index) => {
         return new Promise((resolve, reject) => {
           const formatBirthday = birthday.replace(/-/g, "");
           request(
@@ -79,6 +79,7 @@ exports.main = async (event, context) => {
                   description: JSON.parse(body).description,
                 });
               } else {
+                index === 0 && console.log("characters request error:", error);
                 reject("获取报告失败");
               }
             }

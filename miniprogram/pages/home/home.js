@@ -10,8 +10,16 @@ Page({
     this.setData({ birthday: e.detail.value });
   },
   onLoad() {
-    const res = wx.getSystemInfoSync();
-    res.platform.includes("ios") && this.setData({ isIos: true });
+    wx.cloud.callFunction({
+      name: "getConfig",
+      success: (res) => {
+        const isNotStart = res.result;
+        const systemInfo = wx.getSystemInfoSync();
+        systemInfo.platform.includes("ios") &&
+          isNotStart &&
+          this.setData({ isIos: true });
+      },
+    });
   },
   onSubmit() {
     const birthday = this.data.birthday;

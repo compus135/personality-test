@@ -13,8 +13,16 @@ Page({
   },
   onLoad(options) {
     try {
-      const res = wx.getSystemInfoSync();
-      res.platform.includes("ios") && this.setData({ isIos: true });
+      wx.cloud.callFunction({
+        name: "getConfig",
+        success(res) {
+          const isNotStart = res.result;
+          const systemInfo = wx.getSystemInfoSync();
+          systemInfo.platform.includes("ios") &&
+            isNotStart &&
+            this.setData({ isIos: true });
+        },
+      });
     } catch (error) {}
 
     wx.cloud.callFunction({
